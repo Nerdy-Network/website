@@ -1,9 +1,10 @@
+
 import { useState } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { MessageSquare, Users, Heart, Settings, User, Calendar, Flame, ThumbsUp, MessageCircle, PlusCircle, Search } from 'lucide-react'
+import { MessageSquare, Users, Heart, Settings, User, Calendar, Flame, ThumbsUp, MessageCircle, PlusCircle, Search, BrainCircuit } from 'lucide-react'
 
 // Mock Data
 const user = {
@@ -35,9 +36,9 @@ const leaderboard = [
 const Sidebar = ({ setActiveView }) => (
     <aside className="w-64 bg-black text-white p-6 flex flex-col justify-between rounded-r-2xl">
         <div>
-            <div className="mb-12 flex items-center">
-                <div className="w-8 h-8 bg-purple-500 rounded-full mr-3"></div>
-                <h2 className="text-2xl font-bold">The Nerdy Network</h2>
+            <div className="mb-12 flex items-center space-x-2">
+                <BrainCircuit className="h-8 w-8 text-primary" />
+                <span className="text-xl font-bold">The Nerdy Network</span>
             </div>
             <nav>
                 <ul>
@@ -58,9 +59,9 @@ const ProjectCard = ({ project }) => (
     <Card className="mb-4 bg-white border-none shadow-sm rounded-2xl">
         <CardHeader>
             <div className="flex items-center justify-between">
-                <CardTitle className="text-black">{project.title}</CardTitle>
+                <CardTitle className="text-text">{project.title}</CardTitle>
                 <a href={project.link} target="_blank" rel="noopener noreferrer">
-                    <PlusCircle className="h-5 w-5 text-gray-400 hover:text-black" />
+                    <PlusCircle className="h-5 w-5 text-gray-400 hover:text-primary" />
                 </a>
             </div>
             <CardDescription className="text-gray-500">{project.description}</CardDescription>
@@ -72,13 +73,13 @@ const ProjectCard = ({ project }) => (
                 </div>
                 <div>{project.progress}% complete</div>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                <div className="bg-green-500 h-2.5 rounded-full" style={{ width: `${project.progress}%` }}></div>
+            <div className="w-full bg-gray-light rounded-full h-2.5 mt-2">
+                <div className="bg-primary h-2.5 rounded-full" style={{ width: `${project.progress}%` }}></div>
             </div>
             <div className="flex items-center justify-end mt-4">
-                <Button variant="ghost" size="sm" className="text-gray-500 hover:text-black"><ThumbsUp className="h-4 w-4 mr-1" /> Like</Button>
-                <Button variant="ghost" size="sm" className="text-gray-500 hover:text-black"><MessageCircle className="h-4 w-4 mr-1" /> Comment</Button>
-                <Button variant="ghost" size="sm" className="text-gray-500 hover:text-black"><Heart className="h-4 w-4 mr-1" /> Collab</Button>
+                <Button variant="ghost" size="sm" className="text-gray-500 hover:text-primary"><ThumbsUp className="h-4 w-4 mr-1" /> Like</Button>
+                <Button variant="ghost" size="sm" className="text-gray-500 hover:text-primary"><MessageCircle className="h-4 w-4 mr-1" /> Comment</Button>
+                <Button variant="ghost" size="sm" className="text-gray-500 hover:text-primary"><Heart className="h-4 w-4 mr-1" /> Collab</Button>
             </div>
         </CardContent>
     </Card>
@@ -87,10 +88,10 @@ const ProjectCard = ({ project }) => (
 
 const ProjectsFeed = () => (
   <div>
-    <h2 className="text-2xl font-bold mb-4 text-black">Projects Feed</h2>
+    <h2 className="text-3xl font-bold mb-6 text-text">Projects Feed</h2>
     {feedProjects.map(project => (
-      <div key={project.id} className="flex items-start mb-4">
-        <Avatar className="h-9 w-9 mr-4">
+      <div key={project.id} className="flex items-start mb-6">
+        <Avatar className="h-10 w-10 mr-4">
           <AvatarImage src={project.user.avatar} alt={project.user.name} />
           <AvatarFallback>{project.user.name.charAt(0)}</AvatarFallback>
         </Avatar>
@@ -105,17 +106,17 @@ const ProjectsFeed = () => (
 const StreaksWidget = () => (
   <Card className="bg-white border-none shadow-sm rounded-2xl">
     <CardHeader>
-      <CardTitle className="text-black">Your Streaks</CardTitle>
+      <CardTitle className="text-text">Your Streaks</CardTitle>
     </CardHeader>
     <CardContent>
       <div className="flex items-center mb-4">
-        <Flame className="h-8 w-8 text-orange-500 mr-2" />
-        <span className="text-2xl font-bold text-black">{user.streak} days</span>
+        <Flame className="h-10 w-10 text-orange-500 mr-3" />
+        <span className="text-3xl font-bold text-text">{user.streak} days</span>
       </div>
-      <h3 className="font-bold mb-2 text-black">Leaderboard</h3>
+      <h3 className="font-bold mb-2 text-text">Leaderboard</h3>
       <ul>
         {leaderboard.map((person, index) => (
-          <li key={index} className="flex justify-between text-gray-500">
+          <li key={index} className="flex justify-between text-gray-500 py-1">
             <span>{person.name}</span>
             <span>{person.streak} days</span>
           </li>
@@ -126,39 +127,39 @@ const StreaksWidget = () => (
 );
 
 const UserProfile = () => (
-    <div className="text-black">
-        <div className="flex items-center mb-8">
-            <Avatar className="h-24 w-24 mr-8">
+    <div className="text-text">
+        <div className="flex items-center mb-10">
+            <Avatar className="h-28 w-28 mr-8">
                 <AvatarImage src={user.avatar} alt={user.name} />
                 <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
             </Avatar>
             <div>
-                <h2 className="text-3xl font-bold">{user.name}</h2>
-                <p className="text-gray-500">{user.house} House</p>
-                <p className="mt-2">{user.bio}</p>
+                <h2 className="text-4xl font-bold">{user.name}</h2>
+                <p className="text-gray-500 text-lg">{user.house} House</p>
+                <p className="mt-2 max-w-xl">{user.bio}</p>
             </div>
         </div>
 
         <div>
-            <h3 className="text-2xl font-bold mb-4">My Projects</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h3 className="text-3xl font-bold mb-6">My Projects</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {user.projects.map(project => (
                     <Card key={project.id} className="bg-white border-none shadow-sm rounded-2xl">
                         <CardHeader>
-                            <CardTitle className="text-black">{project.title}</CardTitle>
+                            <CardTitle className="text-text">{project.title}</CardTitle>
                             <div className="text-sm text-gray-500 space-x-2 mt-2">
-                                {project.tags.map(tag => <span key={tag} className="bg-gray-200 px-2 py-1 rounded-full text-xs">{tag}</span>)}
+                                {project.tags.map(tag => <span key={tag} className="bg-gray-light px-3 py-1 rounded-full text-xs font-medium">{tag}</span>)}
                             </div>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-gray-500">{project.description}</p>
+                            <p className="text-gray-600">{project.description}</p>
                             <div className="mt-4">
                                 <div className="flex justify-between text-sm text-gray-500">
                                     <span>Progress</span>
                                     <span>{project.progress}%</span>
                                 </div>
-                                <div className="w-full bg-gray-200 rounded-full h-2.5 mt-1">
-                                    <div className="bg-blue-500 h-2.5 rounded-full" style={{ width: `${project.progress}%` }}></div>
+                                <div className="w-full bg-gray-light rounded-full h-2.5 mt-1">
+                                    <div className="bg-primary h-2.5 rounded-full" style={{ width: `${project.progress}%` }}></div>
                                 </div>
                             </div>
                         </CardContent>
@@ -167,8 +168,8 @@ const UserProfile = () => (
             </div>
         </div>
 
-        <div className="mt-8">
-            <h3 className="text-2xl font-bold mb-4">Streak Calendar</h3>
+        <div className="mt-10">
+            <h3 className="text-3xl font-bold mb-6">Streak Calendar</h3>
             <Card className="bg-white border-none shadow-sm rounded-2xl">
                 <CardContent className="p-4">
                     <div className="grid grid-cols-7 gap-2">
@@ -179,7 +180,7 @@ const UserProfile = () => (
                                 <TooltipProvider key={i}>
                                     <Tooltip>
                                         <TooltipTrigger asChild>
-                                            <div className={`w-10 h-10 rounded-lg ${active ? 'bg-green-500' : 'bg-gray-200'}`}></div>
+                                            <div className={`w-12 h-12 rounded-lg ${active ? 'bg-green-500' : 'bg-gray-light'}`}></div>
                                         </TooltipTrigger>
                                         <TooltipContent>
                                             <p>Day {day}</p>
@@ -200,13 +201,13 @@ const Dashboard = () => {
   const [activeView, setActiveView] = useState('dashboard'); // 'dashboard' or 'profile'
 
   return (
-    <div className="flex h-screen bg-[#FDFBF7] text-black font-sans">
+    <div className="flex h-screen bg-background text-text font-sans">
       <Sidebar setActiveView={setActiveView} />
       <main className="flex-1 p-10 overflow-y-auto">
         <header className="flex justify-between items-center mb-10">
             <div>
                 <h1 className="text-4xl font-bold">Good morning, {user.name}</h1>
-                <p className="text-gray-500 mt-2">Ready to make some progress on your projects today?</p>
+                <p className="text-gray-500 mt-2 text-lg">Ready to make some progress on your projects today?</p>
             </div>
             <div className="flex items-center space-x-6">
                 <Search className="text-gray-500"/>
