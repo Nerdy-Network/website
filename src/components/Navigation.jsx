@@ -48,8 +48,8 @@ const Navigation = () => {
             >
               Hub
             </Link>
-            <Link to="/community">
-              <Button className="bg-blue-600 hover:bg-blue-700">Join Us</Button>
+            <Link to="/dashboard">
+              <Button className="bg-blue-600 hover:bg-blue-700">Dashboard</Button>
             </Link>
           </div>
         </div>
