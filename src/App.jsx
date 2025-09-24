@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { AuthProvider } from './contexts/AuthContext.jsx'
 import Navigation from './components/Navigation.jsx'
 import LandingPage from './components/LandingPage.jsx'
 import JobBoard from './components/JobBoard.jsx'
@@ -32,7 +33,9 @@ const AppContent = () => {
 function App() {
   return (
     <Router>
-      <AppContent />
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
     </Router>
   )
 }
